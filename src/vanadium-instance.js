@@ -47,7 +47,7 @@ Validation.prototype = {
     this.adviceId = advice_id;
     var advice = document.getElementById(advice_id);
     if (advice) {
-      $(advice).addClass(Vanadium.config.advice_class);
+      jQuery(advice).addClass(Vanadium.config.advice_class);
     }
     if(this.validation_type.init){//Vanadium.isFunction(this.validation_type.init)){
       this.validation_type.init(this); //this give us oportunity to define in validation_type scope activity which will be performed on its instance initialisation
@@ -57,7 +57,7 @@ Validation.prototype = {
     if (typeof(message) === "string") {
       return message;
     } else if (typeof(message) === "function") {
-      return message.call(this, $(this.element).val(), this.param);
+      return message.call(this, jQuery(this.element).val(), this.param);
     }
   },
   validMessage: function() {
@@ -67,7 +67,7 @@ Validation.prototype = {
     return this.emmit_message(this.validation_type.invalidMessage()) || 'error'
   },
   test: function(decoration_context, decoration_callback) {
-    return this.validation_type.validationFunction.call(this, $(this.element).val(), this.param, this, decoration_context, decoration_callback);
+    return this.validation_type.validationFunction.call(this, jQuery(this.element).val(), this.param, this, decoration_context, decoration_callback);
   },
   // decoration_context - the contect in which decoration_callback should be invoked
   // decoration_callback - the decoration used by asynchronous validation
@@ -84,7 +84,7 @@ Validation.prototype = {
         message: (validation_result ? this.validMessage() : this.invalidMessage())
       }
     } else if (typeof validation_result === "object") {
-      $.extend.apply(return_value, validation_result);
+      jQuery.extend.apply(return_value, validation_result);
     }
     return return_value;
   }

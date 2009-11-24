@@ -1,4 +1,4 @@
-$(document).ready(function () {
+jQuery(document).ready(function () {
   if (typeof(VanadiumConfig) === "object" && VanadiumConfig) {
     Vanadium.each(VanadiumConfig, function(k, v) {
       Vanadium.config[k] = v;

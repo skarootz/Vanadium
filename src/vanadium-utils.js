@@ -52,7 +52,7 @@ Vanadium.extend = function(extension) {
   for (var idx = 0; idx < arguments.length; idx++) {
     args.push(arguments[idx]);
   }
-  return $.extend.apply($, args);
+  return jQuery.extend.apply(jQuery, args);
 }
 
 Vanadium.bind = function(fun, context) {

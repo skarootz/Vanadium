@@ -157,7 +157,7 @@ Vanadium.setupValidatorTypes = function() {
     //
     ['one_required',
       function (v, elm) {
-        var options = $$('input[name="' + elm.name + '"]');
+        var options = jQuery('input[name="' + elm.name + '"]');
         return some(options, function(elm) {
           return getNodeAttribute(elm, 'value')
         });
@@ -219,7 +219,7 @@ Vanadium.setupValidatorTypes = function() {
       function (_v, p) {
         var exemplar = document.getElementById(p);
         if (exemplar)
-          return 'The value should be the same as <span class="' + Vanadium.config.message_value_class + '">' + ($(exemplar).attr('name') || exemplar.id) + '</span> .';
+          return 'The value should be the same as <span class="' + Vanadium.config.message_value_class + '">' + (jQuery(exemplar).attr('name') || exemplar.id) + '</span> .';
         else
           return 'There is no exemplar item!!!'
       },
@@ -227,8 +227,8 @@ Vanadium.setupValidatorTypes = function() {
       function(validation_instance) {
         var exemplar = document.getElementById(validation_instance.param);
         if (exemplar){
-          $(exemplar).bind('validate', function(){
-            $(validation_instance.element).trigger('validate');
+          jQuery(exemplar).bind('validate', function(){
+            jQuery(validation_instance.element).trigger('validate');
           });
         }
       }
@@ -237,7 +237,7 @@ Vanadium.setupValidatorTypes = function() {
       function (v, p, validation_instance, decoration_context, decoration_callback) {
         if (Vanadium.validators_types['empty'].test(v)) return true;
         if (decoration_context && decoration_callback) {
-          $.getJSON(p, {value: v, id: validation_instance.element.id}, function(data) {
+          jQuery.getJSON(p, {value: v, id: validation_instance.element.id}, function(data) {
             decoration_callback.apply(decoration_context, [[data], true]);
           });
         }

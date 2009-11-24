@@ -61,14 +61,14 @@ ContainerValidation.prototype = {
       }
     }
     if (valid === undefined) {
-      $(this.html_element).removeClass(Vanadium.config.invalid_class);
-      $(this.html_element).removeClass(Vanadium.config.valid_class);
+      jQuery(this.html_element).removeClass(Vanadium.config.invalid_class);
+      jQuery(this.html_element).removeClass(Vanadium.config.valid_class);
     } else if (valid) {
-      $(this.html_element).removeClass(Vanadium.config.invalid_class);
-      $(this.html_element).addClass(Vanadium.config.valid_class);
+      jQuery(this.html_element).removeClass(Vanadium.config.invalid_class);
+      jQuery(this.html_element).addClass(Vanadium.config.valid_class);
     } else {
-      $(this.html_element).removeClass(Vanadium.config.valid_class);
-      $(this.html_element).addClass(Vanadium.config.invalid_class);
+      jQuery(this.html_element).removeClass(Vanadium.config.valid_class);
+      jQuery(this.html_element).addClass(Vanadium.config.invalid_class);
     }
   }
 }

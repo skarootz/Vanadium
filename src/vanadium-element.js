@@ -141,14 +141,14 @@ ElementValidation.prototype = {
       if (advice || validation_result.advice_id) {
         advice = advice || document.getElementById(validation_result.advice_id);
         if (advice) {
-          $(advice).addClass(Vanadium.config.advice_class);
+          jQuery(advice).addClass(Vanadium.config.advice_class);
           var advice_is_empty = advice.childNodes.length == 0
-          if (advice_is_empty || $(advice).hasClass(Vanadium.empty_advice_marker_class)) {
-            $(advice).addClass(Vanadium.empty_advice_marker_class);
-            $(advice).append("<span>" + validation_result.message + "</span>");
+          if (advice_is_empty || jQuery(advice).hasClass(Vanadium.empty_advice_marker_class)) {
+            jQuery(advice).addClass(Vanadium.empty_advice_marker_class);
+            jQuery(advice).append("<span>" + validation_result.message + "</span>");
           }
           ;
-          $(advice).show();
+          jQuery(advice).show();
         } else {
           advice = self.create_advice(validation_result);
         }
@@ -173,9 +173,9 @@ ElementValidation.prototype = {
   create_advice: function(validation_result) {
     var span = document.createElement("span");
     this.created_advices.push(span);
-    $(span).addClass(Vanadium.config.advice_class);
-    $(span).html(validation_result.message);
-    $(this.element).after(span);
+    jQuery(span).addClass(Vanadium.config.advice_class);
+    jQuery(span).html(validation_result.message);
+    jQuery(this.element).after(span);
     return span;
   },
   reset: function() {
@@ -185,25 +185,25 @@ ElementValidation.prototype = {
     //    });
     var element_advice = document.getElementById(this.advice_id);
     if (element_advice) {
-      if ($(element_advice).hasClass(Vanadium.empty_advice_marker_class)) {
-        $(element_advice).empty();
+      if (jQuery(element_advice).hasClass(Vanadium.empty_advice_marker_class)) {
+        jQuery(element_advice).empty();
       }
-      $(element_advice).hide();
+      jQuery(element_advice).hide();
     }
     Vanadium.each(this.validations, function() {
       var advice = document.getElementById(this.adviceId);
       if (advice) {
-        if ($(advice).hasClass(Vanadium.empty_advice_marker_class)) {
-          $(advice).empty();
+        if (jQuery(advice).hasClass(Vanadium.empty_advice_marker_class)) {
+          jQuery(advice).empty();
         }
-        $(advice).hide();
+        jQuery(advice).hide();
       }
       ;
     });
 
     var created_advice = this.created_advices.pop();
     while (!(created_advice === undefined)) {
-      $(created_advice).remove();
+      jQuery(created_advice).remove();
       created_advice = this.created_advices.pop();
     }
     ;
@@ -220,7 +220,7 @@ ElementValidation.prototype = {
     var self = this;
     if (self.timeout) clearTimeout(self.timeout);
     self.timeout = setTimeout(function() {
-      $(self.element).trigger('validate');
+      jQuery(self.element).trigger('validate');
     }, self.wait);
   },
   deferReset: function() {
@@ -240,13 +240,13 @@ ElementValidation.prototype = {
 
     if (!this.only_on_submit) {
       this.observe();
-      $(self.element).bind('validate', function() {
+      jQuery(self.element).bind('validate', function() {
         self.validateAndDecorate.call(self, true)
       });
-      $(self.element).bind('defer_validation', function() {
+      jQuery(self.element).bind('defer_validation', function() {
         self.deferValidation.call(self)
       });
-      $(self.element).bind('reset', function() {
+      jQuery(self.element).bind('reset', function() {
         self.reset.call(self)
       });
     }
@@ -256,43 +256,43 @@ ElementValidation.prototype = {
     var element = this.element;
     var elementType = Vanadium.getElementType(element);
     var self = this;
-    $(element).focus(function() {
+    jQuery(element).focus(function() {
       self.virgin = false;
     });
     switch (elementType) {
       case Vanadium.CHECKBOX:
-        $(element).click(function() {
+        jQuery(element).click(function() {
           //TODO check db click !!!
           self.virgin = false; //this is here 'cos safari do not focus on checkboxes
-          $(self.element).trigger('validate');
+          jQuery(self.element).trigger('validate');
         });
         break;
       //TODO check if checkboxes support on-change too. and if yes handle it!
       // let it run into the next to add a change event too
       case Vanadium.SELECT:
       case Vanadium.FILE:
-        $(element).change(function() {
-          $(element).trigger('validate');
+        jQuery(element).change(function() {
+          jQuery(element).trigger('validate');
         });
         break;
       default:
-        $(element).keydown(function(e) {
+        jQuery(element).keydown(function(e) {
           if (e.keyCode != 9) {//no tabulation as it changes focus
-            $(element).trigger('reset');
+            jQuery(element).trigger('reset');
           }
           ;
         });
 
         if (!this.only_on_blur) {
-          $(element).keyup(function(e) {
+          jQuery(element).keyup(function(e) {
             if (e.keyCode != 9) {//no tabulation as it changes focus
-              $(element).trigger('defer_validation');
+              jQuery(element).trigger('defer_validation');
             }
             ;
           });
         };
-        $(element).blur(function() {
-          $(element).trigger('validate');
+        jQuery(element).blur(function() {
+          jQuery(element).trigger('validate');
         });
     }
   }

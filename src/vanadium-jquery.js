@@ -39,14 +39,14 @@ Vanadium.Version = '0.1';
 Vanadium.CompatibleWithJQuery = '1.3.2';
 Vanadium.Type = "jquery";
 
-if ($().jquery.indexOf(Vanadium.CompatibleWithJQuery) != 0 && window.console && window.console.warn)
+if (jQuery().jquery.indexOf(Vanadium.CompatibleWithJQuery) != 0 && window.console && window.console.warn)
   console.warn("This version of Vanadium is tested with jQuery " + Vanadium.CompatibleWithJQuery +
-               " it may not work as expected with this version (" + $().jquery + ")");
+               " it may not work as expected with this version (" + jQuery().jquery + ")");
 
-Vanadium.each = $.each;
+Vanadium.each = jQuery.each;
 
 Vanadium.all_elements = function() {
-  return $('*');
+  return jQuery('*');
 };
 
 Vanadium.partition = function(elements, dyscriminator) {
