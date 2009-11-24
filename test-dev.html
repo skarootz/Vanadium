@@ -2,91 +2,103 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <title>Validation Test</title>
+    <title>Validation Test</title>
 
-  <script src="lib/jquery-1.3.2.js" type="text/javascript"></script>
+    <script src="lib/jquery-1.3.2.js" type="text/javascript"></script>
 
-  <!--<script src="src/config.js" type="text/javascript"></script>-->
-  <!--<script src="src/custom-types.js" type="text/javascript"></script>-->
+    <!--<script src="src/config.js" type="text/javascript"></script>-->
+    <!--<script src="src/custom-types.js" type="text/javascript"></script>-->
 
 
-  <script type="text/javascript">
+    <script type="text/javascript">
         VanadiumRules = {
-          format: [
-            {validator:'min_length', parameter: 5, advice:'global-advice'}
-          ],
-          pass: [
-            'required',
-            ['min_length', 5, 'global-advice'],
-            ['wait', 200]
-          ],
-          repeat_pass: [
-            ['advice', 'global-advice'],
-            'required',
-            ['min_length', 5, 'global-advice'],
-            ['same_as','pass','global-advice'],
-            ['wait', 500]
-          ]
+            format: [
+                {
+                    validator:'min_length',
+                    parameter: 5,
+                    advice:'global-advice'
+                }
+            ],
+            pass: [
+                'required',
+                ['min_length', 5, 'global-advice'],
+                ['wait', 200]
+            ],
+            repeat_pass: [
+                ['advice', 'global-advice'],
+                'required',
+                ['min_length', 5, 'global-advice'],
+                ['same_as','pass','global-advice'],
+                ['wait', 500]
+            ]
         }
-  </script>
+    </script>
 
-  <script src='src/vanadium-jquery.js' type='text/javascript'></script>
-  <script src='src/vanadium-hashmap.js' type='text/javascript'></script>
-  <script src='src/vanadium-container.js' type='text/javascript'></script>
-  <script src='src/vanadium-form.js' type='text/javascript'></script>
-  <script src='src/vanadium-base.js' type='text/javascript'></script>
-  <script src='src/vanadium-utils.js' type='text/javascript'></script>
-  <script src='src/vanadium-dom.js' type='text/javascript'></script>
-  <script src='src/vanadium-element.js' type='text/javascript'></script>
-  <script src='src/vanadium-instance.js' type='text/javascript'></script>
-  <script src='src/vanadium-types.js' type='text/javascript'></script>
-  <script src='src/vanadium-init.js' type='text/javascript'></script>
+    <script src='src/vanadium-jquery.js' type='text/javascript'></script>
+    <script src='src/vanadium-hashmap.js' type='text/javascript'></script>
+    <script src='src/vanadium-container.js' type='text/javascript'></script>
+    <script src='src/vanadium-form.js' type='text/javascript'></script>
+    <script src='src/vanadium-base.js' type='text/javascript'></script>
+    <script src='src/vanadium-utils.js' type='text/javascript'></script>
+    <script src='src/vanadium-dom.js' type='text/javascript'></script>
+    <script src='src/vanadium-element.js' type='text/javascript'></script>
+    <script src='src/vanadium-instance.js' type='text/javascript'></script>
+    <script src='src/vanadium-types.js' type='text/javascript'></script>
+    <script src='src/vanadium-init.js' type='text/javascript'></script>
 
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
+    <link href="css/style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
 <div class=":container">
-  <form id="signup-form" action="/test_submit.json" name="f" method="get" class=":container">
-    <div id="messages">
-      <div id="global-advice" style="display:none"></div>
-    </div>
+    <form id="signup-form" action="/test_submit.json" name="f" method="get" class=":container">
+        <div id="messages">
+            <div id="global-advice" style="display:none"></div>
+        </div>
 
-    <div id="email_and_name" class=":container">
-      <label class="desc" for="email">email: </label>
-      <input name="email" id="email" type="text"
-             class="field text large :only_on_blur :required;;email_advice  :email;;email_advice">
+        <div id="email_and_name" class=":container">
+            <label class="desc" for="email">email: </label>
+            <input name="email" id="email" type="text"
+                   class="field text large :only_on_blur :required;;email_advice  :email;;email_advice">
     <span id="email_advice"
           style="display:none">Please enter a valid email address. For example fred@domain.com .</span>
-      <br/>
+            <br/>
 
-      <label class="desc" for="name">name: </label>
-      <input name="name" id="name" class=":required :alpha :wait;500 :min_length;5 :ajax;/user_exists.json" type="text">
-      <br/>
-    </div>
-    <div id="passwords" class=":container">
-      <label class="desc" for="pass">password: </label>
-      <input name="password" id="pass" type="password">
+            <label class="desc" for="name">name: </label>
+            <input name="name" id="name" class=":required :alpha :wait;500 :min_length;5 :ajax;/user_exists.json"
+                   type="text">
+            <br/>
+        </div>
+        <div id="passwords" class=":container">
+            <label class="desc" for="pass">password: </label>
+            <input name="password" id="pass" type="password">
 
-      <div style="display:none">OK</div>
-      <br/>
+            <div style="display:none">OK</div>
+            <br/>
 
-      <label class="desc" for="repeat_pass">repeat password: </label>
-      <input name="repeat_password" id="repeat_pass" type="password">
-      <br/>
-    </div>
+            <label class="desc" for="repeat_pass">repeat password: </label>
+            <input name="repeat_password" id="repeat_pass" type="password">
+            <br/>
+        </div>
 
-    <div id="tos" class=":container">
-      <label class="desc" for="accept">Accept out TOS: </label>
-      <input id="accept" class="checkbox :accept" type="checkbox" value="1">
-    </div>
+        <div id="tos" class=":container">
+            <label class="desc" for="accept">Accept out TOS: </label>
+            <input id="accept" class="checkbox :accept" type="checkbox" value="1">
+        </div>
 
-    <input type="submit" value="submit"/>
+        <input type="submit" value="submit"/>
+
+
+    </form>
 
     <input id="format" class=":format;/^\d{3}[\s]?\d{2}$/" type="text">
 
 
-  </form>
+    <input class=":alpha" type="text">
+
+    <button onclick="Vanadium.validateAndDecorate()">validate all without submitt</button>
+    <button onclick="Vanadium.validateAndDecorate($('#signup-form')[0])">validate form only without submitt</button>
+    <button onclick="Vanadium.validateAndDecorate($('#email')[0])">validate email field only without submitt</button>
 </div>
 
 

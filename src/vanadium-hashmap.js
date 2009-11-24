@@ -38,16 +38,17 @@ var HashMap = function() {
   this.initialize();
 }
 
+HashMap.hashmap_instance_id = 0;
+
 HashMap.prototype = {
   hashkey_prefix: "<#HashMapHashkeyPerfix>",
   hashcode_field: "<#HashMapHashcodeField>",
-  hashmap_instance_id: 0,
 
   initialize: function() {
     this.backing_hash = {};
     this.code = 0;
-    this.hashmap_instance_id += 1;
-    this.instance_id = this.hashmap_instance_id;
+    HashMap.hashmap_instance_id += 1;
+    this.instance_id = HashMap.hashmap_instance_id;
   },
 
   hashcodeField: function() {

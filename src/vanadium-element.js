@@ -160,14 +160,14 @@ ElementValidation.prototype = {
       Vanadium.addValidationClass(advice, false);
     });
   },
-  validateAndDecorate : function() {
+  validateAndDecorate : function(regard_virginity) {
     //That's tricky one ;)
     // 1. we are runing validate to get all validation results
     // 2. there could be possible some validations running asynchronous
     // so we won't get the result imediately. In that case the provided decoration callback
     // will be invoked on return from asynchronous callback
     // It is used by Ajax based server-side validation
-    if(!this.virgin)
+    if(!regard_virginity || !this.virgin)
       this.decorate(this.validate(this, this.decorate));
   },
   create_advice: function(validation_result) {
@@ -241,7 +241,7 @@ ElementValidation.prototype = {
     if (!this.only_on_submit) {
       this.observe();
       $(self.element).bind('validate', function() {
-        self.validateAndDecorate.call(self)
+        self.validateAndDecorate.call(self, true)
       });
       $(self.element).bind('defer_validation', function() {
         self.deferValidation.call(self)
