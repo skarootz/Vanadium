@@ -62,6 +62,7 @@ Vanadium.rules = {}
 
 
 Vanadium.init = function() {
+    this.configurei18n();
     this.setupValidatorTypes();
     this.scan_dom();
 }

@@ -85,7 +85,7 @@ Vanadium.setupValidatorTypes = function() {
     //
     ['required', function(v) {
       return !Vanadium.validators_types['empty'].test(v);
-    }, 'This is a required field.'],
+    }, Vanadium.i18n.text("KEY_REQUIRED_FIELD")],
     //
     ['accept', function(v, _p, e) {
       return e.element.checked;
@@ -110,11 +110,11 @@ Vanadium.setupValidatorTypes = function() {
     }, 'Please use numbers only in this field. please avoid spaces or other characters such as dots or commas.'],
     //
     ['alpha', function (v) {
-      return Vanadium.validators_types['empty'].test(v) || /^[a-zA-Z\u00C0-\u00FF\u0100-\u017E\u0391-\u03D6]+$/.test(v)   //% C0 - FF (Ë - Ø); 100 - 17E (? - ?); 391 - 3D6 (? - ?)
+      return Vanadium.validators_types['empty'].test(v) || /^[a-zA-Z\u00C0-\u00FF\u0100-\u017E\u0391-\u03D6]+$/.test(v)   //% C0 - FF (ï¿½ - ï¿½); 100 - 17E (? - ?); 391 - 3D6 (? - ?)
     }, 'Please use letters only in this field.'],
     //
     ['asciialpha', function (v) {
-      return Vanadium.validators_types['empty'].test(v) || /^[a-zA-Z]+$/.test(v)   //% C0 - FF (Ë - Ø); 100 - 17E (? - ?); 391 - 3D6 (? - ?)
+      return Vanadium.validators_types['empty'].test(v) || /^[a-zA-Z]+$/.test(v)   //% C0 - FF (ï¿½ - ï¿½); 100 - 17E (? - ?); 391 - 3D6 (? - ?)
     }, 'Please use ASCII letters only (a-z) in this field.'],
     ['alphanum', function(v) {
       return Vanadium.validators_types['empty'].test(v) || !/\W/.test(v)
@@ -129,7 +129,7 @@ Vanadium.setupValidatorTypes = function() {
       return (Vanadium.validators_types['empty'].test(v)
               ||
               /\w{1,}[@][\w\-]{1,}([.]([\w\-]{1,})){1,3}$/.test(v))
-    }, 'Please enter a valid email address. For example fred@domain.com .'],
+    }, Vanadium.i18n.text('KEY_USE_A_VALID_EMAIL_ADDRESS')],
     //
     ['url', function (v) {
       return Vanadium.validators_types['empty'].test(v) || /^(http|https|ftp):\/\/(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)(:(\d+))?\/?/i.test(v)
@@ -173,7 +173,7 @@ Vanadium.setupValidatorTypes = function() {
         ;
       },
       function (_v, p) {
-        return 'The value should be <span class="' + Vanadium.config.message_value_class + '">' + p + '</span> characters long.'
+        return Vanadium.i18n.text('KEY_VALUE_SHOULD_BE_X_CHARS_LONG', [p] );
       }
     ],
     //
